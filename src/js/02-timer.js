@@ -17,7 +17,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
+    console.log(selectedDates[0].getTime());
 
     if (selectedDates[0].getTime() - options.defaultDate.getTime() > 0) {
       startBtn.removeAttribute('disabled', true);
@@ -26,15 +26,20 @@ const options = {
     }
   },
 };
+console.log(options.defaultDate.getTime());
+
 flatpickr(inputDate, options);
 
 const onStartBtnClick = () => {
   startBtn.setAttribute('disabled', true);
   timerId = setInterval(() => {
-    convertMs(
-      options.onClose(options.selectedDates[0]).getTime() -
-        options.defaultDate.getTime()
-    );
+    const colorBody = convertMs(1681503539000 - options.defaultDate.getTime());
+    console.log(colorBody);
+    // console.log(convertMs(1681503539000 - options.defaultDate.getTime()));
+    // convertMs(
+    //   options.onClose(options.selectedDates[0]).getTime() -
+    //     options.defaultDate.getTime()
+    // );
   }, 1000);
 };
 startBtn.addEventListener('click', onStartBtnClick);
@@ -46,9 +51,13 @@ function convertMs(ms) {
   const day = hour * 24;
 
   const days = Math.floor(ms / day);
+  daysEl.textContent = days;
   const hours = Math.floor((ms % day) / hour);
+  hoursEl.textContent = hours;
   const minutes = Math.floor(((ms % day) % hour) / minute);
+  minutesEl.textContent = minutes;
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  secondsEl.textContent = seconds;
 
   return { days, hours, minutes, seconds };
 }
@@ -57,4 +66,7 @@ function convertMs(ms) {
 // console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
 // console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
 
-// addLeadingZero(value);
+function addLeadingZero(value) {
+  console.log(value.toString().padStart(2, '0'));
+}
+addLeadingZero(7);
