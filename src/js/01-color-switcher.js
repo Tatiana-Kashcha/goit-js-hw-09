@@ -12,9 +12,9 @@ let timerId;
 stopBtn.setAttribute('disabled', true);
 
 const onStartBtnClick = () => {
+  startBtn.setAttribute('disabled', true);
+  stopBtn.removeAttribute('disabled', true);
   timerId = setInterval(() => {
-    startBtn.setAttribute('disabled', true);
-    stopBtn.removeAttribute('disabled', true);
     const colorBody = getRandomHexColor();
     bodyEl.style.backgroundColor = colorBody;
   }, 1000);
