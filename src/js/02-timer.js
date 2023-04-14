@@ -8,7 +8,8 @@ const daysEl = document.querySelector('[data-days]');
 const hoursEl = document.querySelector('[data-hours]');
 const minutesEl = document.querySelector('[data-minutes]');
 const secondsEl = document.querySelector('[data-seconds]');
-
+let deltaTimeMs = 0;
+let timerId;
 startBtn.setAttribute('disabled', true);
 
 const options = {
@@ -18,28 +19,24 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     console.log(selectedDates[0].getTime());
+    deltaTimeMs = selectedDates[0].getTime() - options.defaultDate.getTime();
+    console.log(deltaTimeMs);
 
-    if (selectedDates[0].getTime() - options.defaultDate.getTime() > 0) {
+    if (deltaTimeMs > 0) {
       startBtn.removeAttribute('disabled', true);
     } else {
       Notify.failure('Please choose a date in the future');
     }
   },
 };
-console.log(options.defaultDate.getTime());
 
 flatpickr(inputDate, options);
 
 const onStartBtnClick = () => {
   startBtn.setAttribute('disabled', true);
   timerId = setInterval(() => {
-    const colorBody = convertMs(1681503539000 - options.defaultDate.getTime());
-    console.log(colorBody);
-    // console.log(convertMs(1681503539000 - options.defaultDate.getTime()));
-    // convertMs(
-    //   options.onClose(options.selectedDates[0]).getTime() -
-    //     options.defaultDate.getTime()
-    // );
+    convertMs(1681503539000 - options.defaultDate.getTime());
+    console.log(convertMs(1681503539000 - options.defaultDate.getTime()));
   }, 1000);
 };
 startBtn.addEventListener('click', onStartBtnClick);
