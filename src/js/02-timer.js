@@ -9,6 +9,7 @@ const hoursEl = document.querySelector('[data-hours]');
 const minutesEl = document.querySelector('[data-minutes]');
 const secondsEl = document.querySelector('[data-seconds]');
 let timerId;
+
 startBtn.setAttribute('disabled', true);
 
 const options = {
@@ -27,6 +28,8 @@ const options = {
   },
 };
 flatpickr(inputDate, options);
+const currentDate = options.selectedDates;
+console.log(currentDate);
 
 const onStartBtnClick = () => {
   startBtn.setAttribute('disabled', true);
