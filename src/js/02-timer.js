@@ -48,22 +48,20 @@ function convertMs(ms) {
   const day = hour * 24;
 
   const days = Math.floor(ms / day);
-  daysEl.textContent = days;
+  daysEl.textContent = addLeadingZero(days);
+
   const hours = Math.floor((ms % day) / hour);
-  hoursEl.textContent = hours;
+  hoursEl.textContent = addLeadingZero(hours);
+
   const minutes = Math.floor(((ms % day) % hour) / minute);
-  minutesEl.textContent = minutes;
+  minutesEl.textContent = addLeadingZero(minutes);
+
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
-  secondsEl.textContent = seconds;
+  secondsEl.textContent = addLeadingZero(seconds);
 
   return { days, hours, minutes, seconds };
 }
 
-// console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-// console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-// console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
-
 function addLeadingZero(value) {
-  console.log(value.toString().padStart(2, '0'));
+  return value.toString().padStart(2, '0');
 }
-addLeadingZero(7);
