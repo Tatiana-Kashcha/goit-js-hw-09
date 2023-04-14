@@ -26,10 +26,7 @@ const options = {
     }
   },
 };
-
 flatpickr(inputDate, options);
-
-console.dir(inputDate);
 
 const onStartBtnClick = () => {
   startBtn.setAttribute('disabled', true);
@@ -39,7 +36,7 @@ const onStartBtnClick = () => {
     } else {
       convertMs(1681471457000 - Date.now());
     }
-    console.log(1681471457000 - Date.now());
+    console.log(1681471457000 - Date.now()); //поки для перевірки
   }, 1000);
 };
 startBtn.addEventListener('click', onStartBtnClick);
