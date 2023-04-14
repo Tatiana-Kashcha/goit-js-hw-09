@@ -33,13 +33,14 @@ console.dir(inputDate);
 
 const onStartBtnClick = () => {
   startBtn.setAttribute('disabled', true);
-  if (1681469749000 - Date.now() === 0) {
-    clearInterval(timerId);
-  } else {
-    timerId = setInterval(() => {
-      convertMs(1681469749000 - Date.now());
-    }, 1000);
-  }
+  timerId = setInterval(() => {
+    if (1681471457000 - Date.now() < 0) {
+      clearInterval(timerId);
+    } else {
+      convertMs(1681471457000 - Date.now());
+    }
+    console.log(1681471457000 - Date.now());
+  }, 1000);
 };
 startBtn.addEventListener('click', onStartBtnClick);
 
