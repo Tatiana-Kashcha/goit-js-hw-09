@@ -8,7 +8,6 @@ const daysEl = document.querySelector('[data-days]');
 const hoursEl = document.querySelector('[data-hours]');
 const minutesEl = document.querySelector('[data-minutes]');
 const secondsEl = document.querySelector('[data-seconds]');
-let deltaTimeMs = 0;
 let timerId;
 startBtn.setAttribute('disabled', true);
 
@@ -19,10 +18,8 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     console.log(selectedDates[0].getTime());
-    deltaTimeMs = selectedDates[0].getTime() - options.defaultDate.getTime();
-    console.log(deltaTimeMs);
 
-    if (deltaTimeMs > 0) {
+    if (selectedDates[0].getTime() - options.defaultDate.getTime() > 0) {
       startBtn.removeAttribute('disabled', true);
     } else {
       Notify.failure('Please choose a date in the future');
@@ -32,11 +29,15 @@ const options = {
 
 flatpickr(inputDate, options);
 
+console.dir(inputDate);
+
 const onStartBtnClick = () => {
   startBtn.setAttribute('disabled', true);
   timerId = setInterval(() => {
-    convertMs(1681503539000 - options.defaultDate.getTime());
-    console.log(convertMs(1681503539000 - options.defaultDate.getTime()));
+    const date2 = 1681551466000 - Date.now();
+    convertMs(date2);
+    // console.log(convertMs(date2));
+    // console.log(options.defaultDate.getTime());
   }, 1000);
 };
 startBtn.addEventListener('click', onStartBtnClick);
