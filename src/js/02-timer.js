@@ -9,6 +9,7 @@ const hoursEl = document.querySelector('[data-hours]');
 const minutesEl = document.querySelector('[data-minutes]');
 const secondsEl = document.querySelector('[data-seconds]');
 let timerId;
+let selectedDate = null;
 
 startBtn.setAttribute('disabled', true);
 
@@ -20,10 +21,12 @@ const options = {
   onClose(selectedDates) {
     console.log(selectedDates[0].getTime()); //поки для перевірки
 
-    if (selectedDates[0].getTime() - options.defaultDate.getTime() > 0) {
-      startBtn.removeAttribute('disabled', true);
+    if (selectedDates[0] - new Date() > 0) {
+      startBtn.removeAttribute('disabled');
+      selectedDate = selectedDates[0];
     } else {
       Notify.failure('Please choose a date in the future');
+      selectedDate = null;
     }
   },
 };
@@ -36,12 +39,12 @@ console.dir(inputDate); //поки для перевірки
 const onStartBtnClick = () => {
   startBtn.setAttribute('disabled', true);
   timerId = setInterval(() => {
-    if (1681538541000 - Date.now() < 0) {
+    if (selectedDate - Date.now() < 0) {
       clearInterval(timerId);
     } else {
-      convertMs(1681538541000 - Date.now());
+      convertMs(selectedDate - Date.now());
     }
-    console.log(1681538541000 - Date.now()); //поки для перевірки
+    console.log(selectedDate - Date.now()); //поки для перевірки
   }, 1000);
 };
 startBtn.addEventListener('click', onStartBtnClick);
