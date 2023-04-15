@@ -30,17 +30,18 @@ const options = {
 flatpickr(inputDate, options);
 
 console.log(inputDate.value);
+
 console.dir(inputDate);
 
 const onStartBtnClick = () => {
   startBtn.setAttribute('disabled', true);
   timerId = setInterval(() => {
-    if (1681586880000 - Date.now() < 0) {
+    if (1681538541000 - Date.now() < 0) {
       clearInterval(timerId);
     } else {
-      convertMs(1681586880000 - Date.now());
+      convertMs(1681538541000 - Date.now());
     }
-    console.log(1681586880000 - Date.now()); //поки для перевірки
+    console.log(1681538541000 - Date.now()); //поки для перевірки
   }, 1000);
 };
 startBtn.addEventListener('click', onStartBtnClick);
