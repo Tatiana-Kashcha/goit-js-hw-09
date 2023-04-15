@@ -18,7 +18,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0].getTime());
+    console.log(selectedDates[0].getTime()); //поки для перевірки
 
     if (selectedDates[0].getTime() - options.defaultDate.getTime() > 0) {
       startBtn.removeAttribute('disabled', true);
@@ -29,9 +29,9 @@ const options = {
 };
 flatpickr(inputDate, options);
 
-console.log(inputDate.value);
+console.log(inputDate.value); //поки для перевірки
 
-console.dir(inputDate);
+console.dir(inputDate); //поки для перевірки
 
 const onStartBtnClick = () => {
   startBtn.setAttribute('disabled', true);
