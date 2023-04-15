@@ -32,10 +32,6 @@ const options = {
 };
 flatpickr(inputDate, options);
 
-console.log(inputDate.value); //поки для перевірки
-
-console.dir(inputDate); //поки для перевірки
-
 const onStartBtnClick = () => {
   startBtn.setAttribute('disabled', true);
   timerId = setInterval(() => {
