@@ -19,7 +19,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0].getTime()); //поки для перевірки
+    console.log(selectedDates[0].getTime()); //для перевірки
 
     if (selectedDates[0] - new Date() > 0) {
       startBtn.removeAttribute('disabled');
@@ -40,11 +40,16 @@ const onStartBtnClick = () => {
     } else {
       convertMs(selectedDate - Date.now());
     }
-    console.log(selectedDate - Date.now()); //поки для перевірки
+    console.log(selectedDate - Date.now()); //для перевірки
   }, 1000);
 };
 startBtn.addEventListener('click', onStartBtnClick);
 
+/**
+ * Перетворює мілісекунди (ms) в кількість днів, годин, хвилин, секунд
+ * @param {*} ms
+ * @returns days, hours, minutes, seconds
+ */
 function convertMs(ms) {
   const second = 1000;
   const minute = second * 60;
@@ -66,6 +71,11 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
+/**
+ * Приводить значення параметра до рядка, та підставляє 0 попереду, якщо value одинарне число (<10)
+ * @param {*} value
+ * @returns приведене значення параметра
+ */
 function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
